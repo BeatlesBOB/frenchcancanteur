@@ -1,0 +1,30 @@
+.suggestion{
+    &__container{
+        position: relative;
+    }
+
+    &__list{
+        position: absolute;
+        top: 0;
+        left: 0;
+        list-style-type: none;
+        background-color: var(--clr-white);
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-m);
+        box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.41);
+    }
+
+    &__item{
+        padding: 1rem 2rem;
+        &:hover{
+            background-color: var(--clr-primary);
+            color: var(--clr-white);
+        }
+    }
+
+    &__btn{
+        all: unset;
+        font-size: var(--font-size-m);
+    }
+}

@@ -1,0 +1,30 @@
+.auth{
+    min-height: 100vh;
+    display: flex;
+
+    &__container{
+        display: flex;
+        width: 100%;
+        gap: 5rem;
+    }
+
+    &__form{
+        flex: 0 0 40%;
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+    
+    &__illustration{
+        flex: 0 0 50%;
+        background-color: var(--clr-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        img{
+            width: 70%;
+            display: block;
+        }
+    }
+}
