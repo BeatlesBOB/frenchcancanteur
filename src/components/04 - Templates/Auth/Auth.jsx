@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import "./Auth.scss"
-import Illustration from "../../assets/images/Veterinary-amico.svg"
+// import Illustration from "../../assets/images/Veterinary-amico.svg"
 
 export default function Auth() {
     return (
@@ -10,7 +10,7 @@ export default function Auth() {
                     <Outlet />
                 </div>
                 <div className="auth__illustration">
-                    <img src={Illustration} alt="" />
+                    {/* <img src={Illustration} alt="" /> */}
                 </div>
             </div>
         </div>
