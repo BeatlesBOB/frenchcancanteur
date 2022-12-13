@@ -17,23 +17,12 @@
     &--secondary{
         border: 1px solid var(--clr-secondary);
         background-color: var(--clr-secondary);
-        color: var(--clr-secondary);
+        color: var(--clr-white);
 
         &:hover{
             background-color: var(--clr-secondary);
             border: 1px solid var(--clr-secondary);
             color: var(--clr-white);
-        }
-    }
-
-    &--link{
-        padding: 0;
-        color: var(--clr-black);
-        text-decoration: none;
-        font-size: var(--font-size-m);
-
-        &:hover{
-            color: var(--clr-primary);
         }
     }
 }

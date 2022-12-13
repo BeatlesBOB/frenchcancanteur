@@ -1,0 +1,21 @@
+.form__input {
+    &--checkbox {
+        accent-color: var(--clr-primary);
+        height: 3rem;
+
+        &:focus,
+        &:focus-visible {
+            outline: none;
+        }
+    }
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &__label {
+        font-size: var(--font-size-m);
+    }
+}

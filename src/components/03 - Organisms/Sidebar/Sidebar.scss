@@ -1,0 +1,11 @@
+.sidebar {
+    position: fixed;
+    height: 100vh;
+    background-color: var(--clr-primary);
+    width: 20%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+
+}

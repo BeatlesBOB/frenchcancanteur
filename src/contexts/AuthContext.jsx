@@ -2,66 +2,77 @@ import { createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendP
 import { doc, getDoc,setDoc } from "firebase/firestore";
 
 import { createContext, useEffect, useState } from "react";
+import Loading from "../components/01 - Atoms/Loading/Loading";
+import { Navigate, useNavigate } from "react-router-dom";
 import useFirebase from "../hooks/useFirebase";
 export const AuthContext = createContext();
 
-export function UserProvider({ children }) {
-    const [currentUser, setCurrentUser] = useState()
+export function AuthProvider({ children }) {
+    const [currentUser, setCurrentUser] = useState();
+    const [isLoading,setIsLoading] = useState(true)
+    const [error, setError] = useState(null)
     const {auth,db} = useFirebase()
+    const navigate = useNavigate()
 
-
-    function register(email, password) {
-        return createUserWithEmailAndPassword(auth, e.currentTarget.email.value, e.currentTarget.password.value)
+    const register = ({email, password, firstname, lastname, address}) => {
+        console.log(email,password)
+        return createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
-            await setDoc(doc(db,"client",userCredential.user.uid),user);
+            await setDoc(doc(db,"customers",userCredential.user.uid),{email,firstname,lastname,address,id:userCredential.user.uid});
         })
         .catch((error) => {
             setError(error.message)
         });
     }
     
-    function login(email, password) {
+    const login = ({email, password})=> {
         return signInWithEmailAndPassword(auth, email,password)
-        .then(async (userCredential) => {
-            const docRef = doc(db, "client", userCredential.user.uid);  
-            const user = await (await getDoc(docRef)).data()  
-            setCurrentUser(user)    
-        })
         .catch((error) => {
             setError(error.message)
         });
     }
     
-    function logout() {
-        return signOut()
+    const logout = () => {
+        return signOut(auth)
     }
     
-    function resetPassword(email) {
+    const resetPassword = (email) => {
         return sendPasswordResetEmail(email)
     }
     
-    function updateUserEmail(email) {
+    const updateUserEmail = (email) => {
         return updateEmail(email)
     }
     
-    function updateUserPassword(password) {
+    const updateUserPassword = (password) => {
         return updatePassword(password)
     }
 
-    
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(user => {
-        console.log(user)
-        //setCurrentUser(user)
-    })
-    return () => {
-        unsubscribe();
-    };
-  }, [])
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth,async (user) => {
+            if(user === null){
+                 navigate("/")   
+            } else {
+                const docRef = doc(db, "customers", user.uid);  
+                const userDoc = await (await getDoc(docRef)).data()
+                setCurrentUser(userDoc)
+            }
+            
+            setIsLoading(false)
+        })
+        return unsubscribe
+      }, [])
 
     return (
-        <AuthContext.Provider value={{login,register,logout,resetPassword,updateUserEmail,updateUserPassword}}>
-            {children}
-        </AuthContext.Provider>
+        <>
+        {
+            !isLoading ?
+            <AuthContext.Provider value={{login,register,logout,resetPassword,updateUserEmail,updateUserPassword,currentUser,error}}>
+                {children}
+            </AuthContext.Provider> : <Loading />
+        }
+        </>
+        
+        
     );
 }

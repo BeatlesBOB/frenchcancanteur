@@ -1,0 +1,10 @@
+.brocantist{
+    &__item{
+        background-color: var(--clr-white);
+        padding: 2rem;
+    }
+
+    &__text{
+        font-size: var(--font-size-l);
+    }
+}

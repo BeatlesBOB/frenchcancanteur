@@ -8,5 +8,9 @@
         &:hover{
             color: var(--clr-primary);
         }
+
+        &--active{
+            color: red;
+        }
     }
 }

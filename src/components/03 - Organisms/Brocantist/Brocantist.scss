@@ -1,0 +1,15 @@
+.brocantist{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    z-index: 9999;
+
+    &__list{
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: scroll;
+        gap: 1.2rem;
+        width: 90%;
+        margin-bottom: 2rem;
+    }
+}

@@ -1,0 +1,23 @@
+.form__input{
+    &--range{
+        outline: 0;
+		border: 0;
+		max-width: 100%;
+		transition: box-shadow 0.2s ease-in-out;
+        overflow: hidden;
+        appearance: none;
+        background-color: #ddd;
+
+        &::-webkit-slider-thumb {
+            width: 2rem;
+            appearance: none;
+            height: 2rem;
+            cursor: ew-resize;
+            background: #fff;
+            box-shadow: -33rem 0 0 320px var(--clr-secondary), inset 0 0 0 2rem var(--clr-primary);
+            border-radius: 50%;
+            transition: box-shadow 0.2s ease-in-out;
+            position: relative;
+        }
+    }
+}

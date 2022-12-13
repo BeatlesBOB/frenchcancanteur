@@ -1,10 +1,12 @@
-.form{
-    &__label{
-        font-size: 2rem;
-    }
-
-    &__input{
+.form {
+    &__input {
         font-size: 2rem;
         padding: 1.2rem 2rem;
+        caret-color: var(--clr-primary);
+
+        &:focus,
+        &:focus-visible {
+            outline: 1px solid var(--clr-primary);
+        }
     }
 }
